@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "options": { "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] } },
+  "tasks": [
+    {
+      "label": "AgentML 1: Setup (venv + install)",
+      "type": "shell",
+      "command": "python -m venv --system-site-packages .venv && .venv\\Scripts\\python -m pip install --upgrade pip && .venv\\Scripts\\python -m pip install -e .[dev] && .venv\\Scripts\\python examples\\generate_datasets.py && echo. && echo ===== SETUP DONE =====",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "AgentML 2: Run tests",
+      "type": "shell",
+      "command": "set AGENTML_PROVIDER=mock&& .venv\\Scripts\\python -m pytest -v",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "AgentML 3: Demo (AutoML + RAG)",
+      "type": "shell",
+      "command": ".venv\\Scripts\\python -m agentml demo",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "AgentML 4: Start Web UI (http://127.0.0.1:8000)",
+      "type": "shell",
+      "command": ".venv\\Scripts\\python -m agentml serve --port 8000",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "AgentML 5: Install PyTorch (CPU, optional)",
+      "type": "shell",
+      "command": ".venv\\Scripts\\python -m pip install torch --index-url https://download.pytorch.org/whl/cpu",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    }
+  ]
+}

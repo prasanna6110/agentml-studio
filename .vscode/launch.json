@@ -1,0 +1,9 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "AgentML: Web UI", "type": "debugpy", "request": "launch", "module": "agentml",
+      "args": ["serve", "--port", "8000"], "cwd": "${workspaceFolder}", "justMyCode": true },
+    { "name": "AgentML: Demo", "type": "debugpy", "request": "launch", "module": "agentml",
+      "args": ["demo"], "cwd": "${workspaceFolder}", "console": "integratedTerminal" }
+  ]
+}
